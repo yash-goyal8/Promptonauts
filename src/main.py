@@ -20,9 +20,6 @@ def main():
     else:
         print(f"Welcome back, {user_profile['name']}!")
 
-    # Start notification scheduler in a background thread
-    notif_thread = threading.Thread(target=start_notification_scheduler, args=(user_profile,), daemon=True)
-    notif_thread.start()
 
     # Step 3: Start conversation loop
     waiting_for_email_message = None  # state flag
