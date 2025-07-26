@@ -89,7 +89,20 @@ EMAIL_PASSWORD=abcdefghijklmnop
 python src/main.py
 ```
 
+
 ---
+
+## 📹 Demo Video
+
+We have recorded a **5-minute demo video** showcasing the full working of the Cognitive Companion Agent — from onboarding, planning, tool usage, to output generation and edge case handling.
+
+📎 **Watch the video demo**: [Demo Video Link](https://www.canva.com/design/DAGuRzIru7g/U4j1YZCm0coIcS_gkcSU8Q/watch?utlId=hae22173251)  
+
+
+
+---
+
+
 ## Documentation
 
 - [📄 High-Level Design (HLD)](./HLD.pdf)
