@@ -1,4 +1,4 @@
-# 🧠 Cognitive Companion — Agentic AI for Alzheimer’s Support
+# 🧠 Memory Anchor — Agentic AI for Alzheimer’s Support
 
 Cognitive Companion is an Agentic AI application designed to assist early-stage Alzheimer's patients with memory support, routine reminders, and emotionally comforting conversations. It can also notify loved ones via email when needed.
 
