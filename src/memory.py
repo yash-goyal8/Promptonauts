@@ -17,3 +17,13 @@ def load_user_profile():
         with open(PROFILE_FILE, "r") as f:
             return json.load(f)
     return None
+
+def get_contact_email(contact_name):
+    profile = load_user_profile()
+    if not profile:
+        return None
+    contacts = profile.get("emergency_contacts", {})
+    contact = contacts.get(contact_name.capitalize())
+    if contact and "email" in contact:
+        return contact["email"]
+    return None

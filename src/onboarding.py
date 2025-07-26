@@ -11,6 +11,12 @@ def collect_user_info():
     contacts = input("3. Name a few close family/friends (comma separated): ")
     contacts_list = [c.strip() for c in contacts.split(',')]
 
+    emergency_contacts = {}
+
+    for contact in contacts_list:
+        email = input(f"   - What is {contact}'s email? ")
+        emergency_contacts[contact] = {"email": email.strip()}
+
     print("4. Tell me your daily schedule (leave blank if unsure):")
     breakfast = input("   - Breakfast time (e.g., 8:00 AM): ")
     lunch = input("   - Lunch time (e.g., 1:00 PM): ")
@@ -27,6 +33,7 @@ def collect_user_info():
             "wants_reminders": wants_reminders
         },
         "contacts": contacts_list,
+        "emergency_contacts": emergency_contacts,
         "routines": {
             "breakfast": breakfast,
             "lunch": lunch,

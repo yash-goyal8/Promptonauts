@@ -1,8 +1,9 @@
 # src/main.py
 
 from onboarding import collect_user_info
-from memory import load_user_profile, save_user_profile
+from memory import load_user_profile, save_user_profile, get_contact_email
 from executor import generate_response
+from tools import send_custom_email
 
 def main():
     # Step 1: Load profile from root directory
@@ -17,14 +18,43 @@ def main():
     else:
         print(f"Welcome back, {user_profile['name']}!")
 
-    # Step 3: Ready for interaction loop (placeholder for now)
+    # Step 3: Start conversation loop
+    waiting_for_email_message = None  # state flag
+
     while True:
-        user_input = input("\n🗣️  You: ")
+        user_input = input("\nYou: ")
+
         if user_input.lower() in ['exit', 'quit']:
             print("Goodbye!")
             break
 
-        # Placeholder: future planner + executor logic
+        if waiting_for_email_message:
+            contact_name, email = waiting_for_email_message
+            send_custom_email(email, f"A message from {user_profile['name']}", user_input)
+            print(f"Email sent to {contact_name}.")
+            waiting_for_email_message = None
+            continue
+
+        if user_input.lower().startswith("email "):
+            parts = user_input.split()
+            if len(parts) >= 2:
+                contact_name = parts[1].capitalize()
+                email = get_contact_email(contact_name)
+
+                if not email:
+                    print(f"I don’t have {contact_name}’s email.")
+                    continue
+
+                message = user_input.partition(contact_name)[2].strip()
+
+                if not message:
+                    print(f"What would you like me to tell {contact_name}?")
+                    waiting_for_email_message = (contact_name, email)
+                else:
+                    send_custom_email(email, f"A message from {user_profile['name']}", message)
+                    print(f"Email sent to {contact_name}.")
+                continue
+
         response = generate_response(user_input)
         print("Assistant:", response)
 

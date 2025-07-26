@@ -1,50 +1,69 @@
-# Agentic AI App Hackathon Template
+#Cognitive Companion — Agentic AI for Alzheimer’s Support
 
-Welcome! This repository is your starting point for the **Agentic AI App Hackathon**. It includes:
+Cognitive Companion is an Agentic AI application designed to assist early-stage Alzheimer's patients with memory support, routine reminders, and emotionally comforting conversations. It can also notify loved ones via email when needed.
 
-- A consistent folder structure  
-- An environment spec (`environment.yml` or `Dockerfile`)  
-- Documentation placeholders to explain your design and demo
+---
 
-## 📋 Submission Checklist
+## Features
 
-- [ ] All code in `src/` runs without errors  
-- [ ] `ARCHITECTURE.md` contains a clear diagram sketch and explanation  
-- [ ] `EXPLANATION.md` covers planning, tool use, memory, and limitations  
-- [ ] `DEMO.md` links to a 3–5 min video with timestamped highlights  
+- Onboards the user and stores their routine/memory profile
+- Uses Google Gemini (via Gemini API) to generate memory-aware, emotionally supportive replies
+- Sets local reminders for daily routines or medications
+- Sends email alerts to loved ones
+- Saves user memory locally for context-aware interaction
+- Secured using environment variables
 
+---
+## Core Modules Implemented
 
-## 🚀 Getting Started
+| File          | Purpose                                                                 |
+|---------------|-------------------------------------------------------------------------|
+| `planner.py`  | (To be implemented) Breaks down user goals into sub-tasks               |
+| `executor.py` | Calls Gemini API, generates responses using prompt + memory             |
+| `memory.py`   | Saves and retrieves user memory (e.g., routines, meds, contacts)        |
+| `tools.py`    | Contains helper functions like `set_reminder()` and `send_notification()` |
+| `notifier.py` | Sends email to emergency contacts using Gmail SMTP                      |
 
-1. **Clone / Fork** this template.  Very Important. Fork Name MUST be the same name as the teamn name
-2. **Install dependencies**  
-   ```bash
-   # Conda
-   conda env create -f environment.yml
-   conda activate agentic-hackathon
-
-   #—or Docker—
-   docker build -t agentic-agent .
-   docker run --rm -it agentic-agent bash
-
-## 📂 Folder Layout
-
-![Folder Layout Diagram](images/folder-githb.png)
+---
 
 
+## Setup Instructions
 
-## 🏅 Judging Criteria
-
-- **Technical Excellence **  
-  This criterion evaluates the robustness, functionality, and overall quality of the technical implementation. Judges will assess the code's efficiency, the absence of critical bugs, and the successful execution of the project's core features.
-
-- **Solution Architecture & Documentation **  
-  This focuses on the clarity, maintainability, and thoughtful design of the project's architecture. This includes assessing the organization and readability of the codebase, as well as the comprehensiveness and conciseness of documentation (e.g., GitHub README, inline comments) that enables others to understand and potentially reproduce or extend the solution.
-
-- **Innovative Gemini Integration **  
-  This criterion specifically assesses how effectively and creatively the Google Gemini API has been incorporated into the solution. Judges will look for novel applications, efficient use of Gemini's capabilities, and the impact it has on the project's functionality or user experience. You are welcome to use additional Google products.
-
-- **Societal Impact & Novelty **  
-  This evaluates the project's potential to address a meaningful problem, contribute positively to society, or offer a genuinely innovative and unique solution. Judges will consider the originality of the idea, its potential real‑world applicability, and its ability to solve a challenge in a new or impactful way.
+### 1. Create and Activate Virtual Environment
 
 
+python -m venv .venv
+.venv\Scripts\activate    # On Windows
+source .venv/bin/activate # On macOS/Linux
+
+
+###2. Install Requirements
+
+pip install -r requirements.txt
+
+
+###3. Create a .env file and add:
+
+1. Get a free Gemini API key via [Google AI Studio](https://makersuite.google.com/app)
+2. Store it in a `.env` file in the root (never commit it)
+
+# Gemini API Key (from Google AI Studio)
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# Gmail App Password setup
+EMAIL_SENDER=youremail@gmail.com
+EMAIL_PASSWORD=your_gmail_app_password
+
+Please note - To get a Gmail App Password:
+
+- Enable 2-Step Verification
+
+- sit App Passwords to generate one (that will go into the EMAIL_PASSWORD
+
+
+###4. Run the App
+python src/main.py
+
+
+###Disclaimer
+This is a hackathon prototype and not intended for medical use without proper safety, testing, and regulatory approval.
