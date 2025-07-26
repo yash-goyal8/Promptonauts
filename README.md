@@ -24,7 +24,7 @@ Cognitive Companion is an Agentic AI application designed to assist early-stage 
 | `tools.py`    | Contains helper functions like `set_reminder()` and `send_notification()` |
 | `notifier.py` | Sends email to emergency contacts using Gmail SMTP                      |
 
----
+
 
 
 ## Setup Instructions
