@@ -1,9 +1,11 @@
-# src/main.py
-
+import threading
+from tools import send_custom_email
 from onboarding import collect_user_info
 from memory import load_user_profile, save_user_profile, get_contact_email
 from executor import generate_response
-from tools import send_custom_email
+
+# Import the notification scheduler
+from notify_user import start_notification_scheduler
 
 def main():
     # Step 1: Load profile from root directory
@@ -17,6 +19,10 @@ def main():
         print(f"\nOnboarding complete. Welcome, {user_profile['name']}!\n")
     else:
         print(f"Welcome back, {user_profile['name']}!")
+
+    # Start notification scheduler in a background thread
+    notif_thread = threading.Thread(target=start_notification_scheduler, args=(user_profile,), daemon=True)
+    notif_thread.start()
 
     # Step 3: Start conversation loop
     waiting_for_email_message = None  # state flag
