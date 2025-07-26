@@ -93,7 +93,7 @@ python src/main.py
 ## Documentation
 
 - [📄 High-Level Design (HLD)](./HLD.pdf)
-- [📄 Product Requirements Document (PRD)](./docs/PRD.pdf)
+- [📄 Product Requirements Document (PRD)](./PRD.pdf)
 
 
 ---
